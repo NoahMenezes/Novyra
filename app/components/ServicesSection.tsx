@@ -2,33 +2,56 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Code2, Palette, Cpu, Zap, Search, Globe } from "lucide-react";
+
+const services = [
+  {
+    icon: Palette,
+    title: "Premium Web Design",
+    description:
+      "Crafting high-end, visual-first digital experiences that capture your brand's essence and convert visitors into clients.",
+  },
+  {
+    icon: Cpu,
+    title: "AI Automation",
+    description:
+      "Integrating cutting-edge AI workflows into your business to automate repetitive tasks and skyrocket your efficiency.",
+  },
+  {
+    icon: Code2,
+    title: "Full-Stack Development",
+    description:
+      "Building robust, lightning-fast web applications using the latest technologies like Next.js, React, and Bun.",
+  },
+  {
+    icon: Zap,
+    title: "Performance Optimization",
+    description:
+      "Ensuring your site loads in under a second with advanced optimization techniques and Core Web Vitals expertise.",
+  },
+  {
+    icon: Search,
+    title: "SEO & Growth Strategy",
+    description:
+      "Implementing data-driven SEO strategies to ensure your brand is discovered by the right audience at the right time.",
+  },
+  {
+    icon: Globe,
+    title: "Digital Ecosystems",
+    description:
+      "Creating cohesive digital identities across all platforms to maintain a strong and consistent brand presence.",
+  },
+];
 
 export function ServicesSection() {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
-  const cards = [
-    {
-      video:
-        "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260314_131748_f2ca2a28-fed7-44c8-b9a9-bd9acdd5ec31.mp4",
-      tag: "Strategy",
-      title: "Research & Insight",
-      description:
-        "We dig deep into data, culture, and human behavior to surface the insights that drive meaningful, lasting change.",
-    },
-    {
-      video:
-        "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260324_151826_c7218672-6e92-402c-9e45-f1e0f454bdc4.mp4",
-      tag: "Craft",
-      title: "Design & Execution",
-      description:
-        "From concept to launch, we obsess over every detail to deliver experiences that feel effortless and look extraordinary.",
-    },
-  ];
-
   return (
-    <section className="bg-black py-28 md:py-40 px-6 overflow-hidden relative">
+    <section
+      id="services"
+      className="bg-black py-28 md:py-40 px-6 overflow-hidden relative"
+    >
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(255,255,255,0.02)_0%,_transparent_60%)] pointer-events-none" />
 
       <div className="max-w-6xl mx-auto relative z-10" ref={ref}>
@@ -36,58 +59,53 @@ export function ServicesSection() {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.7 }}
-          className="flex justify-between items-end mb-12 md:mb-16"
+          className="text-center mb-16 md:mb-20"
         >
-          <h2 className="text-3xl md:text-5xl text-white tracking-tight">
-            What we do
-          </h2>
-          <div className="hidden md:block text-white/40 text-sm">
-            Our services
+          <div className="text-white/40 text-sm tracking-widest uppercase mb-6">
+            Our Expertise
           </div>
+          <h2 className="text-4xl md:text-6xl text-white tracking-tight mb-6">
+            Future-ready <span className="font-serif italic text-white/60">services</span>
+            <br />
+            for the next generation.
+          </h2>
+          <p className="text-white/50 text-base max-w-lg mx-auto">
+            From world-class design to intelligent AI automation, we provide
+            the tools you need to lead in the digital era.
+          </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-          {cards.map((card, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 50 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-              transition={{ duration: 0.8, delay: index * 0.15 }}
-              className="liquid-glass rounded-3xl overflow-hidden group flex flex-col"
-            >
-              <div className="relative aspect-video overflow-hidden">
-                <video
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  muted
-                  autoPlay
-                  loop
-                  playsInline
-                  preload="auto"
-                  src={card.video}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent pointer-events-none" />
-              </div>
-
-              <div className="p-6 md:p-8 flex flex-col flex-1">
-                <div className="flex justify-between items-start mb-6">
-                  <span className="uppercase tracking-widest text-white/40 text-xs">
-                    {card.tag}
-                  </span>
-                  <div className="liquid-glass rounded-full p-2">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          {services.map((service, index) => {
+            const Icon = service.icon;
+            return (
+              <motion.div
+                key={service.title}
+                initial={{ opacity: 0, y: 50 }}
+                animate={
+                  isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }
+                }
+                transition={{ duration: 0.8, delay: index * 0.08 }}
+                className="liquid-glass rounded-3xl p-8 md:p-10 group cursor-pointer hover:bg-white/[0.02] transition-colors"
+              >
+                <div className="flex justify-between items-start mb-8">
+                  <div className="liquid-glass rounded-2xl p-3">
+                    <Icon className="w-5 h-5 text-white/80" />
+                  </div>
+                  <div className="liquid-glass rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <ArrowUpRight className="w-4 h-4 text-white" />
                   </div>
                 </div>
-                <div className="mt-auto">
-                  <h3 className="text-white text-xl md:text-2xl mb-3 tracking-tight">
-                    {card.title}
-                  </h3>
-                  <p className="text-white/50 text-sm leading-relaxed">
-                    {card.description}
-                  </p>
-                </div>
-              </div>
-            </motion.div>
-          ))}
+
+                <h3 className="text-white text-xl mb-3 tracking-tight">
+                  {service.title}
+                </h3>
+                <p className="text-white/50 text-sm leading-relaxed">
+                  {service.description}
+                </p>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>

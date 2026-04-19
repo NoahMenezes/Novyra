@@ -7,6 +7,8 @@ import { AboutSection } from "./components/AboutSection";
 import { FeaturedVideoSection } from "./components/FeaturedVideoSection";
 import { PhilosophySection } from "./components/PhilosophySection";
 import { ServicesSection } from "./components/ServicesSection";
+import { ContactSection } from "./components/ContactSection";
+import { Footer } from "./components/Footer";
 
 export default function Home() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -110,10 +112,21 @@ export default function Home() {
         <Navbar />
 
         {/* Hero Content */}
-        <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-6 py-12 text-center -translate-y-[20%]">
-          <h1 className="text-7xl md:text-8xl lg:text-9xl text-white tracking-tight whitespace-nowrap font-serif mb-12">
-            Know it then <em className="italic">all</em>.
+        <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-6 py-12 text-center -translate-y-[10%]">
+          <div className="text-white/40 text-sm tracking-widest uppercase mb-6 font-medium">
+            Next-Gen Digital Solutions
+          </div>
+          <h1 className="text-5xl md:text-7xl lg:text-8xl text-white tracking-tight whitespace-nowrap font-serif mb-6">
+            Design <em className="italic text-white/70">meets</em>
           </h1>
+          <h2 className="text-5xl md:text-7xl lg:text-8xl text-white tracking-tight whitespace-nowrap font-serif mb-10">
+            Intelligence <em className="italic text-white/70">at scale.</em>
+          </h2>
+
+          <p className="text-white/50 text-base md:text-lg max-w-xl mb-10 leading-relaxed">
+            Premium web design and AI automation for brands ready to build the future.
+            Crafted by Noah Menezes.
+          </p>
 
           <div className="max-w-xl w-full mb-8 flex flex-col items-center gap-6">
             <form
@@ -122,26 +135,32 @@ export default function Home() {
             >
               <input
                 type="email"
-                placeholder="Enter your email"
+                placeholder="Start your project with a message"
                 className="bg-transparent border-none outline-none flex-1 text-white placeholder:text-white/40 text-base"
                 required
               />
               <button
                 type="submit"
-                className="bg-white rounded-full p-3 text-black hover:bg-white/90 transition-colors shrink-0 flex items-center justify-center"
+                className="bg-white rounded-full p-3 text-black hover:bg-white/90 transition-colors shrink-0 flex items-center justify-center cursor-pointer"
               >
                 <ArrowRight className="w-5 h-5" />
               </button>
             </form>
 
-            <p className="text-white text-sm leading-relaxed px-4 text-center max-w-md">
-              Stay updated with the latest news and insights. Subscribe to our
-              newsletter today and never miss out on exciting updates.
-            </p>
-
-            <button className="liquid-glass rounded-full px-8 py-3 text-white text-sm font-medium hover:bg-white/5 transition-colors mt-4">
-              Read Manifesto
-            </button>
+            <div className="flex items-center gap-6">
+              <a
+                href="#services"
+                className="liquid-glass rounded-full px-8 py-3 text-white text-sm font-medium hover:bg-white/5 transition-colors"
+              >
+                Our Expertise
+              </a>
+              <a
+                href="#contact"
+                className="text-white/60 hover:text-white text-sm font-medium transition-colors"
+              >
+                Contact Us →
+              </a>
+            </div>
           </div>
         </div>
 
@@ -170,8 +189,10 @@ export default function Home() {
 
       <AboutSection />
       <FeaturedVideoSection />
-      <PhilosophySection />
       <ServicesSection />
+      <PhilosophySection />
+      <ContactSection />
+      <Footer />
     </main>
   );
 }
