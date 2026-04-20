@@ -56,6 +56,7 @@ function buildPitch(lead: Lead): { subject: string; body: string } {
     ${lead.budget && lead.budget !== "N/A" ? `Given your budget of ${lead.budget}, we can execute this effectively and within scope.\n\n` : ""}I'd love to discuss exactly how we can implement this AI-driven approach for your project.
 
     Please contact me back so we can discuss the next steps:
+      • Email: 2006noahmenezes@gmail.com
       • WhatsApp: +91 9518346262
       • LinkedIn: www.linkedin.com/in/noah-menezes-26066a351
 
@@ -235,6 +236,58 @@ function PitchModal({ lead, onClose }: { lead: Lead; onClose: () => void }) {
 }
 
 // ──────────────────────────────────────────────────────────────
+//  PETITION MODAL
+// ──────────────────────────────────────────────────────────────
+function PetitionModal({ lead, onClose }: { lead: Lead; onClose: () => void }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md"
+      onClick={onClose}
+    >
+      <motion.div
+        initial={{ scale: 0.92, y: 24, opacity: 0 }}
+        animate={{ scale: 1, y: 0, opacity: 1 }}
+        exit={{ scale: 0.92, y: 24, opacity: 0 }}
+        transition={{ type: "spring", damping: 22, stiffness: 300 }}
+        onClick={(e) => e.stopPropagation()}
+        className="relative w-full max-w-2xl bg-[#0d0d0d] border border-white/10 rounded-3xl overflow-hidden shadow-2xl p-8"
+      >
+        <div className="flex justify-between items-start mb-6">
+          <div>
+            <h2 className="text-2xl font-serif text-white">
+              {lead.name}&apos;s Petition
+            </h2>
+            <p className="text-white/40 text-sm mt-1">
+              Source: {lead.source} • {lead.intent} Intent
+            </p>
+          </div>
+          <button
+            onClick={onClose}
+            className="text-white/30 hover:text-white transition-colors bg-white/5 rounded-full p-2"
+          >
+            <X className="w-5 h-5" />
+          </button>
+        </div>
+        <div className="bg-white/5 border border-white/10 rounded-2xl p-6 text-white/80 leading-relaxed text-lg italic font-serif">
+          &ldquo;{lead.description}&rdquo;
+        </div>
+        <div className="mt-8 flex justify-end">
+          <button
+            onClick={onClose}
+            className="bg-white text-black px-6 py-2.5 rounded-xl text-sm font-semibold hover:bg-white/90 transition-all"
+          >
+            Close
+          </button>
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+}
+
+// ──────────────────────────────────────────────────────────────
 //  DASHBOARD PAGE
 // ──────────────────────────────────────────────────────────────
 export default function Dashboard() {
@@ -242,6 +295,7 @@ export default function Dashboard() {
   const [isHunting, setIsHunting] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [activeLead, setActiveLead] = useState<Lead | null>(null);
+  const [viewLead, setViewLead] = useState<Lead | null>(null);
   const [intentFilter, setIntentFilter] = useState<string>("All");
   const [savedLeads, setSavedLeads] = useState<Set<number>>(new Set());
 
@@ -454,10 +508,21 @@ export default function Dashboard() {
                       </td>
 
                       {/* Project Petition */}
-                      <td className="px-6 py-5 max-w-xs">
-                        <p className="text-sm text-white/60 line-clamp-2 leading-relaxed italic">
-                          &ldquo;{lead.description}&rdquo;
-                        </p>
+                      <td
+                        className="px-6 py-5 max-w-xs cursor-pointer group/petition"
+                        onClick={() => setViewLead(lead)}
+                        title="Click to view full petition"
+                      >
+                        <div className="flex items-start justify-between gap-2">
+                          <p className="text-sm text-white/60 line-clamp-2 leading-relaxed italic group-hover/petition:text-white/90 transition-colors">
+                            &ldquo;{lead.description}&rdquo;
+                          </p>
+                          <div className="opacity-0 group-hover/petition:opacity-100 flex items-center justify-center shrink-0 w-6 h-6 rounded-full bg-white/10 text-white/60 transition-all">
+                            <span className="text-[10px] tracking-widest font-bold">
+                              ...
+                            </span>
+                          </div>
+                        </div>
                       </td>
 
                       {/* Contact */}
@@ -591,6 +656,9 @@ export default function Dashboard() {
       <AnimatePresence>
         {activeLead && (
           <PitchModal lead={activeLead} onClose={() => setActiveLead(null)} />
+        )}
+        {viewLead && (
+          <PetitionModal lead={viewLead} onClose={() => setViewLead(null)} />
         )}
       </AnimatePresence>
     </main>
