@@ -1,0 +1,102 @@
+[
+    {
+        "name": "Sarah Jenkins",
+        "email": "sarah.j@nexuscrit.com",
+        "phone": "+1 302-555-0198",
+        "description": "Looking for a developer to build an AI-powered CRM for my small agency. Full-stack required.",
+        "source": "X/Twitter",
+        "budget": "$8,000",
+        "urgency": "This week",
+        "intent": "Hot"
+    },
+    {
+        "name": "TechFounder_2026",
+        "email": "info@techsolaris.io",
+        "phone": "N/A",
+        "description": "Need a scalable Next.js dashboard with complex data visualisations and real-time analytics. Budget $5k.",
+        "source": "Reddit r/forhire",
+        "budget": "$5,000",
+        "urgency": "ASAP",
+        "intent": "Hot"
+    },
+    {
+        "name": "Marcus Sterling",
+        "email": "m.sterling@vertexgroup.net",
+        "phone": "+1 415-555-0274",
+        "description": "Seeking a developer for a long-term fintech project. Must know AI automation and compliance.",
+        "source": "LinkedIn Post",
+        "budget": "$20,000+",
+        "urgency": "2 weeks",
+        "intent": "Hot"
+    },
+    {
+        "name": "StartupHub",
+        "email": "support@logiflow.io",
+        "phone": "N/A",
+        "description": "Building a logistics SaaS platform, need a backend specialist for REST API integrations.",
+        "source": "IndieHackers",
+        "budget": "$12,000",
+        "urgency": "ASAP",
+        "intent": "Hot"
+    },
+    {
+        "name": "Priya Sharma",
+        "email": "priya@healthnova.co",
+        "phone": "N/A",
+        "description": "Building a telemedicine web app with video calls, prescription management, and patient records.",
+        "source": "LinkedIn Post",
+        "budget": "$15,000",
+        "urgency": "1 month",
+        "intent": "High"
+    },
+    {
+        "name": "Derek Owens",
+        "email": "derek.owens@brandwaveagency.com",
+        "phone": "+1 646-555-0182",
+        "description": "Need a custom e-commerce platform with AI product recommendations and Stripe/PayPal checkout.",
+        "source": "X/Twitter",
+        "budget": "$9,500",
+        "urgency": "2 weeks",
+        "intent": "Hot"
+    },
+    {
+        "name": "VentureLab",
+        "email": "hello@venturelab.io",
+        "phone": "N/A",
+        "description": "Looking to build an AI SaaS MVP: users upload PDFs and the AI answers questions about them. Need it in 3 weeks.",
+        "source": "Reddit r/forhire",
+        "budget": "$6,000",
+        "urgency": "3 weeks",
+        "intent": "Hot"
+    },
+    {
+        "name": "Amara Osei",
+        "email": "amara@buildwithamara.dev",
+        "phone": "N/A",
+        "description": "Require a blockchain-based NFT marketplace with minting, auctions, and MetaMask authentication.",
+        "source": "IndieHackers",
+        "budget": "$18,000",
+        "urgency": "Flexible",
+        "intent": "High"
+    },
+    {
+        "name": "Jason Caldwell",
+        "email": "jason@growthpilot.ai",
+        "phone": "+1 512-555-0309",
+        "description": "Need a multi-tenant SaaS platform for marketing automation \u2014 email sequences, A/B testing, CRM sync.",
+        "source": "LinkedIn Post",
+        "budget": "$25,000",
+        "urgency": "1 month",
+        "intent": "High"
+    },
+    {
+        "name": "EduTech Founders",
+        "email": "team@learnhub360.com",
+        "phone": "+1 737-555-0451",
+        "description": "Migrate our Thinkific course platform to a custom LMS with live classes, quizzes, and progress tracking.",
+        "source": "X/Twitter",
+        "budget": "$11,000",
+        "urgency": "ASAP",
+        "intent": "Hot"
+    }
+]

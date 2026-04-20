@@ -7,7 +7,7 @@ export function Footer() {
     return (
         <footer className="bg-black border-t border-white/5 px-6 py-16 md:py-20">
             <div className="max-w-6xl mx-auto">
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-8 mb-16">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-8 mb-16">
                     {/* Brand */}
                     <div className="md:col-span-1">
                         <Link href="/" className="flex items-center gap-2 mb-4">
@@ -15,45 +15,14 @@ export function Footer() {
                             <span className="text-white font-semibold text-lg">Novyra</span>
                         </Link>
                         <p className="text-white/40 text-sm leading-relaxed max-w-xs">
-                            Founded by Noah Menezes. Premium digital solutions crafted in Goa, India.
+                            Founded by Noah Menezes. Premium software engineering services.
                         </p>
                     </div>
 
-                    {/* Services */}
-                    <div>
-                        <h4 className="text-white text-sm font-medium mb-4">Services</h4>
-                        <ul className="space-y-3">
-                            <li>
-                                <a
-                                    href="/#services"
-                                    className="text-white/40 text-sm hover:text-white/70 transition-colors"
-                                >
-                                    Web Design
-                                </a>
-                            </li>
-                            <li>
-                                <a
-                                    href="/#services"
-                                    className="text-white/40 text-sm hover:text-white/70 transition-colors"
-                                >
-                                    AI Automation
-                                </a>
-                            </li>
-                            <li>
-                                <a
-                                    href="/#services"
-                                    className="text-white/40 text-sm hover:text-white/70 transition-colors"
-                                >
-                                    Development
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-
                     {/* Contact */}
-                    <div>
-                        <h4 className="text-white text-sm font-medium mb-4">Contact</h4>
-                        <ul className="space-y-3">
+                    <div className="flex flex-col md:items-end">
+                        <h4 className="text-white text-sm font-medium mb-4 text-left md:text-right">Contact</h4>
+                        <ul className="space-y-3 text-left md:text-right">
                             <li>
                                 <a
                                     href="mailto:2006noahmenezes@gmail.com"
@@ -64,29 +33,6 @@ export function Footer() {
                             </li>
                             <li className="text-white/40 text-sm">
                                 Margao, Goa, India
-                            </li>
-                        </ul>
-                    </div>
-
-                    {/* Social */}
-                    <div>
-                        <h4 className="text-white text-sm font-medium mb-4">Connect</h4>
-                        <ul className="space-y-3">
-                            <li>
-                                <a
-                                    href="#"
-                                    className="text-white/40 text-sm hover:text-white/70 transition-colors"
-                                >
-                                    LinkedIn
-                                </a>
-                            </li>
-                            <li>
-                                <a
-                                    href="#"
-                                    className="text-white/40 text-sm hover:text-white/70 transition-colors"
-                                >
-                                    X / Twitter
-                                </a>
                             </li>
                         </ul>
                     </div>

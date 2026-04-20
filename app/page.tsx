@@ -3,10 +3,6 @@
 import { useRef, useEffect } from "react";
 import { Globe, ArrowRight } from "lucide-react";
 import { Navbar } from "./components/Navbar";
-import { AboutSection } from "./components/AboutSection";
-import { FeaturedVideoSection } from "./components/FeaturedVideoSection";
-import { PhilosophySection } from "./components/PhilosophySection";
-import { ServicesSection } from "./components/ServicesSection";
 import { ContactSection } from "./components/ContactSection";
 import { Footer } from "./components/Footer";
 
@@ -114,18 +110,18 @@ export default function Home() {
         {/* Hero Content */}
         <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-6 py-12 text-center -translate-y-[10%]">
           <div className="text-white/40 text-sm tracking-widest uppercase mb-6 font-medium">
-            Next-Gen Digital Solutions
+            Premium Software Engineering
           </div>
           <h1 className="text-5xl md:text-7xl lg:text-8xl text-white tracking-tight whitespace-nowrap font-serif mb-6">
-            Design <em className="italic text-white/70">meets</em>
+            Software <em className="italic text-white/70">engineered</em>
           </h1>
           <h2 className="text-5xl md:text-7xl lg:text-8xl text-white tracking-tight whitespace-nowrap font-serif mb-10">
-            Intelligence <em className="italic text-white/70">at scale.</em>
+            for your <em className="italic text-white/70">ambition.</em>
           </h2>
 
           <p className="text-white/50 text-base md:text-lg max-w-xl mb-10 leading-relaxed">
-            Premium web design and AI automation for brands ready to build the future.
-            Crafted by Noah Menezes.
+            High-performance custom software, AI automation, and enterprise scaling
+            designed to move your business forward. Founded by Noah Menezes.
           </p>
 
           <div className="max-w-xl w-full mb-8 flex flex-col items-center gap-6">
@@ -135,7 +131,7 @@ export default function Home() {
             >
               <input
                 type="email"
-                placeholder="Start your project with a message"
+                placeholder="Discuss your next project"
                 className="bg-transparent border-none outline-none flex-1 text-white placeholder:text-white/40 text-base"
                 required
               />
@@ -149,16 +145,16 @@ export default function Home() {
 
             <div className="flex items-center gap-6">
               <a
-                href="#services"
+                href="#contact"
                 className="liquid-glass rounded-full px-8 py-3 text-white text-sm font-medium hover:bg-white/5 transition-colors"
               >
-                Our Expertise
+                Start Conversation
               </a>
               <a
                 href="#contact"
                 className="text-white/60 hover:text-white text-sm font-medium transition-colors"
               >
-                Contact Us →
+                Get Started →
               </a>
             </div>
           </div>
@@ -187,10 +183,6 @@ export default function Home() {
         </div>
       </section>
 
-      <AboutSection />
-      <FeaturedVideoSection />
-      <ServicesSection />
-      <PhilosophySection />
       <ContactSection />
       <Footer />
     </main>
