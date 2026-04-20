@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useQuery, useMutation } from "convex/react";
+import { api } from "../../convex/_generated/api";
 import { Navbar } from "../components/Navbar";
 import {
   Search,
@@ -291,7 +293,12 @@ function PetitionModal({ lead, onClose }: { lead: Lead; onClose: () => void }) {
 //  DASHBOARD PAGE
 // ──────────────────────────────────────────────────────────────
 export default function Dashboard() {
-  const [leads, setLeads] = useState<Lead[]>([]);
+  const convexLeads = useQuery(api.leads.get);
+  const addBatch = useMutation(api.leads.addBatch);
+  const leads: Lead[] = (convexLeads || []).map(
+    (l, i) => ({ ...l, id: i + 1 }) as Lead,
+  );
+
   const [isHunting, setIsHunting] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [activeLead, setActiveLead] = useState<Lead | null>(null);
@@ -312,10 +319,10 @@ export default function Dashboard() {
       const res = await fetch("/data/leads.json");
       if (res.ok) {
         const data = await res.json();
-        setLeads(data.map((l: Lead, i: number) => ({ ...l, id: i + 1 })));
+        await addBatch({ leads: data });
       }
     } catch (e) {
-      console.error("Failed to fetch leads", e);
+      console.error("Failed to sync leads", e);
     } finally {
       setTimeout(() => setIsHunting(false), 1500);
     }
