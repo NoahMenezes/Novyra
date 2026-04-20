@@ -25,6 +25,10 @@ import {
   Clock,
   DollarSign,
   Bookmark,
+  Lightbulb,
+  Target,
+  BarChart3,
+  MousePointer2,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -290,6 +294,122 @@ function PetitionModal({ lead, onClose }: { lead: Lead; onClose: () => void }) {
 }
 
 // ──────────────────────────────────────────────────────────────
+//  AI EMAIL STRATEGIST MODAL
+// ──────────────────────────────────────────────────────────────
+function StrategyModal({ lead, onClose }: { lead: Lead; onClose: () => void }) {
+  const strategy = {
+    angle:
+      lead.intent === "Hot"
+        ? "Aggressive Direct Value"
+        : "Consultative Insight",
+    psychology:
+      lead.description.toLowerCase().includes("urgent") ||
+      lead.urgency === "ASAP"
+        ? "Speed-to-Market Urgency"
+        : "Long-term Scalability & Trust",
+    hook: `Focus on the immediate transition of ${lead.description.split(" ").slice(0, 4).join(" ")}...`,
+    steps: [
+      "Analyze the specific tech stack mentioned or implied.",
+      "Draft a 3-sentence opener proving technical competence.",
+      "Address the privacy/budget concern directly in the second paragraph.",
+      "Use the 'Soft Close' — suggest a 5-min demo rather than a sale.",
+    ],
+  };
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-xl"
+      onClick={onClose}
+    >
+      <motion.div
+        initial={{ scale: 0.95, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        exit={{ scale: 0.95, opacity: 0 }}
+        onClick={(e) => e.stopPropagation()}
+        className="w-full max-w-xl bg-[#0a0a0a] border border-white/10 rounded-3xl p-8 overflow-hidden relative"
+      >
+        <div className="absolute top-0 right-0 p-8 opacity-10 pointer-events-none">
+          <Target className="w-32 h-32 text-purple-500" />
+        </div>
+
+        <div className="flex items-center gap-3 mb-8">
+          <div className="p-2 bg-purple-500/20 rounded-lg">
+            <Lightbulb className="w-5 h-5 text-purple-400" />
+          </div>
+          <div>
+            <h2 className="text-xl font-semibold text-white">
+              AI Email Strategist
+            </h2>
+            <p className="text-white/40 text-xs">
+              Deep Analysis for {lead.name}
+            </p>
+          </div>
+        </div>
+
+        <div className="space-y-6">
+          <div className="grid grid-cols-2 gap-4">
+            <div className="bg-white/5 p-4 rounded-2xl border border-white/5">
+              <span className="text-[10px] text-white/30 uppercase tracking-widest block mb-1">
+                Campaign Angle
+              </span>
+              <span className="text-sm font-medium text-white">
+                {strategy.angle}
+              </span>
+            </div>
+            <div className="bg-white/5 p-4 rounded-2xl border border-white/5">
+              <span className="text-[10px] text-white/30 uppercase tracking-widest block mb-1">
+                Buyer Psychology
+              </span>
+              <span className="text-sm font-medium text-white">
+                {strategy.psychology}
+              </span>
+            </div>
+          </div>
+
+          <div className="bg-purple-500/5 p-5 rounded-2xl border border-purple-500/20">
+            <div className="flex items-center gap-2 mb-2">
+              <Target className="w-4 h-4 text-purple-400" />
+              <span className="text-xs font-bold text-purple-300 uppercase">
+                The Strategic Hook
+              </span>
+            </div>
+            <p className="text-sm text-white/80 leading-relaxed italic">
+              {strategy.hook}
+            </p>
+          </div>
+
+          <div>
+            <span className="text-[10px] text-white/30 uppercase tracking-widest block mb-3">
+              Outreach Sequence Plan
+            </span>
+            <div className="space-y-3">
+              {strategy.steps.map((step, i) => (
+                <div key={i} className="flex items-start gap-3">
+                  <div className="w-5 h-5 rounded-full bg-white/10 flex items-center justify-center text-[10px] text-white/60 shrink-0 mt-0.5">
+                    {i + 1}
+                  </div>
+                  <p className="text-xs text-white/60">{step}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <button
+          onClick={onClose}
+          className="w-full mt-8 bg-white text-black py-3 rounded-2xl text-sm font-bold hover:bg-white/90 transition-all active:scale-[0.98]"
+        >
+          Implement Strategy
+        </button>
+      </motion.div>
+    </motion.div>
+  );
+}
+
+// ──────────────────────────────────────────────────────────────
 //  DASHBOARD PAGE
 // ──────────────────────────────────────────────────────────────
 export default function Dashboard() {
@@ -303,6 +423,7 @@ export default function Dashboard() {
   const [searchQuery, setSearchQuery] = useState("");
   const [activeLead, setActiveLead] = useState<Lead | null>(null);
   const [viewLead, setViewLead] = useState<Lead | null>(null);
+  const [strategyLead, setStrategyLead] = useState<Lead | null>(null);
   const [intentFilter, setIntentFilter] = useState<string>("All");
   const [savedLeads, setSavedLeads] = useState<Set<number>>(new Set());
 
@@ -583,6 +704,13 @@ export default function Dashboard() {
                       <td className="px-6 py-5 text-right">
                         <div className="flex items-center justify-end gap-2">
                           <button
+                            onClick={() => setStrategyLead(lead)}
+                            className="p-2 rounded-xl border bg-blue-500/10 border-blue-500/20 text-blue-400 hover:bg-blue-500/20 transition-all"
+                            title="AI Email Strategy"
+                          >
+                            <Lightbulb className="w-4 h-4" />
+                          </button>
+                          <button
                             onClick={() => toggleSave(lead.id)}
                             className={`p-2 rounded-xl border transition-all ${
                               savedLeads.has(lead.id)
@@ -666,6 +794,12 @@ export default function Dashboard() {
         )}
         {viewLead && (
           <PetitionModal lead={viewLead} onClose={() => setViewLead(null)} />
+        )}
+        {strategyLead && (
+          <StrategyModal
+            lead={strategyLead}
+            onClose={() => setStrategyLead(null)}
+          />
         )}
       </AnimatePresence>
     </main>
