@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useQuery, useMutation } from "convex/react";
 import { api } from "../../convex/_generated/api";
 import { Navbar } from "../components/Navbar";
@@ -27,8 +27,6 @@ import {
   Bookmark,
   Lightbulb,
   Target,
-  BarChart3,
-  MousePointer2,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -304,7 +302,7 @@ function StrategyModal({ lead, onClose }: { lead: Lead; onClose: () => void }) {
         : "Consultative Insight",
     psychology:
       lead.description.toLowerCase().includes("urgent") ||
-      lead.urgency === "ASAP"
+        lead.urgency === "ASAP"
         ? "Speed-to-Market Urgency"
         : "Long-term Scalability & Trust",
     hook: `Focus on the immediate transition of ${lead.description.split(" ").slice(0, 4).join(" ")}...`,
@@ -434,7 +432,7 @@ export default function Dashboard() {
     setSavedLeads(newSaved);
   };
 
-  const fetchLeads = async () => {
+  const fetchLeads = useCallback(async () => {
     setIsHunting(true);
     try {
       const res = await fetch("/data/leads.json");
@@ -447,11 +445,14 @@ export default function Dashboard() {
     } finally {
       setTimeout(() => setIsHunting(false), 1500);
     }
-  };
+  }, [addBatch]);
 
   useEffect(() => {
-    fetchLeads();
-  }, []);
+    const timer = setTimeout(() => {
+      fetchLeads();
+    }, 0);
+    return () => clearTimeout(timer);
+  }, [fetchLeads]);
 
   const filteredLeads = leads.filter((l) => {
     const matchesSearch =
@@ -712,11 +713,10 @@ export default function Dashboard() {
                           </button>
                           <button
                             onClick={() => toggleSave(lead.id)}
-                            className={`p-2 rounded-xl border transition-all ${
-                              savedLeads.has(lead.id)
-                                ? "bg-purple-500/20 border-purple-500/40 text-purple-400"
-                                : "bg-white/5 border-white/10 text-white/40 hover:bg-white/10 hover:text-white"
-                            }`}
+                            className={`p-2 rounded-xl border transition-all ${savedLeads.has(lead.id)
+                              ? "bg-purple-500/20 border-purple-500/40 text-purple-400"
+                              : "bg-white/5 border-white/10 text-white/40 hover:bg-white/10 hover:text-white"
+                              }`}
                             title={
                               savedLeads.has(lead.id)
                                 ? "Unsave Lead"

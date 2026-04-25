@@ -1,8 +1,7 @@
 "use client";
 
 import { SignUp } from "@clerk/nextjs";
-import { Globe, CheckCircle2, Rocket, Stars } from "lucide-react";
-import Link from "next/link";
+import { CheckCircle2, Rocket, Stars } from "lucide-react";
 import { motion } from "framer-motion";
 import { Navbar } from "@/app/components/Navbar";
 

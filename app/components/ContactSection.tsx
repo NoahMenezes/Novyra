@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { ArrowRight, Mail, MapPin, Phone } from "lucide-react";
+import { ArrowRight, Mail, MapPin } from "lucide-react";
 
 export function ContactSection() {
     const ref = useRef<HTMLDivElement>(null);

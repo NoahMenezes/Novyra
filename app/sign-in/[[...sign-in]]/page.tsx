@@ -1,8 +1,7 @@
 "use client";
 
 import { SignIn } from "@clerk/nextjs";
-import { Globe, ArrowLeft, ShieldCheck, Zap, Sparkles } from "lucide-react";
-import Link from "next/link";
+import { ShieldCheck, Zap, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
 import { Navbar } from "@/app/components/Navbar";
 
